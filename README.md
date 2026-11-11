@@ -84,13 +84,13 @@ When $\text{EAR} < 0.20$ or blendshape $\text{eyeBlink} > 0.45$, the eye smoothl
 
 Smile elevation is computed by measuring the vertical displacement between the mouth corners and the bottom lip center relative to the total face height:
 
-$$\text{Smile Ratio} = \frac{\mathbf{p}_{\text{lip\_bottom}.y} - \frac{\mathbf{p}_{\text{lip\_left}.y} + \mathbf{p}_{\text{lip\_right}.y}}{2}}{\text{Face Height}}$$
+Smile Ratio = (Lip_Bottom_Y - ((Lip_Left_Y + Lip_Right_Y) / 2)) / Face_Height
 
 - When smiling is detected ($\text{Ratio} > 0.04$ or $\text{Blendshape} > 0.40$), soft pink blush circles are blended onto the cheeks using `cv2.addWeighted`, and the mouth displays a broad smile showing upper teeth.
 
 ### 3. Mouth Openness & Talking
 
-$$\text{Mouth Open Ratio} = \frac{\|\mathbf{p}_{\text{lip\_top}} - \mathbf{p}_{\text{lip\_bottom}}\|}{\|\mathbf{p}_{\text{lip\_left}} - \mathbf{p}_{\text{lip\_right}}\|}$$
+Mouth Open Ratio = Distance(Lip_Top, Lip_Bottom) / Distance(Lip_Left, Lip_Right)
 
 - Indices: Top Lip (13), Bottom Lip (14), Corners (61, 291).
 - When open ($\text{Ratio} > 0.35$ or $\text{jawOpen} > 0.35$), the mouth scales into an open ellipse with a nested red tongue.
